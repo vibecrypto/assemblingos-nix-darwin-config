@@ -60,6 +60,12 @@ Use project-local `flake.nix` devShells for labs:
 
 Docker can be useful for side services and complex app stacks. Avoid it as the default for real-time macOS audio/video, virtual devices, or Apple Silicon GPU workflows because Docker Desktop on macOS runs inside a Linux VM.
 
+## Use Manual Installs As Exceptions
+
+Manual installs are acceptable for vendor software, drivers, system extensions, firmware utilities, and gated downloads that cannot be managed cleanly through Nix or Homebrew.
+
+Manual installs must be documented in `docs/manual-installs.md` if they become part of the system.
+
 ## Example: Archive Extraction
 
 When the task is "extract this downloaded vendor software", choose the tool by file type and automation needs:

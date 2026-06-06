@@ -39,6 +39,18 @@ Rank tools by:
 - Lab flake: experimental tool or workflow-specific dependency.
 - Reject/watchlist: redundant, fragile, unsafe, or not worth maintaining.
 
+## Manual Install Assistance
+
+When the best install path is manual, the agent should still help:
+
+1. Find the official source.
+2. Try direct download only when the site allows it.
+3. If browser download is required, give exact user steps.
+4. Inspect the downloaded artifact.
+5. Identify whether it is an archive, app, dmg, pkg, script, driver, extension, or firmware utility.
+6. Ask before privileged or system-changing actions.
+7. Document persistent manual installs in `docs/manual-installs.md`.
+
 ## Example: ATEM Software Download
 
 The official ATEM control software is a vendor install from Blackmagic Design. It should be documented as a manual hardware-vendor install.
