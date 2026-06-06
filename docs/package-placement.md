@@ -26,6 +26,17 @@ Use `environment.systemPackages` for stable tools you want available system-wide
 - daily AI agents
 - GUI apps that work well from nixpkgs
 
+## Use Upstream Flakes
+
+Use an official upstream flake before Homebrew when:
+
+- the tool is not in nixpkgs
+- the project docs or repo provide a valid `flake.nix`
+- the tool is CLI/dev/agent infrastructure
+- you want a pinned, reproducible lab before production promotion
+
+A GitHub repo is not automatically a flake. It must contain a valid `flake.nix` or document Nix flake usage.
+
 ## Use Homebrew
 
 Use `homebrew.brews` and `homebrew.casks` for:
@@ -55,6 +66,8 @@ Use project-local `flake.nix` devShells for labs:
 - Python/Node projects with unstable dependencies
 - voice/video AI experiments
 - tools being evaluated before promotion
+
+For one-off tests, `nix run github:owner/repo/tag` can run a flake app from any folder. For repeatable evaluation, create `labs/<tool>/flake.nix` and use `nix develop`.
 
 ## Use Docker Carefully
 

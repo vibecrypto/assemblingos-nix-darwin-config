@@ -26,14 +26,16 @@ Rank tools by:
 
 1. Already installed or already declared in AssemblingOS.
 2. Available in nixpkgs on both Darwin and Linux/NixOS.
-3. Agent-first interface: CLI/API, non-interactive, predictable output, clear errors.
-4. Fits the task directly without unnecessary complexity.
-5. Has good documentation and active maintenance.
-6. Can be tested before promotion.
+3. Official upstream flake when the tool is not in nixpkgs.
+4. Agent-first interface: CLI/API, non-interactive, predictable output, clear errors.
+5. Fits the task directly without unnecessary complexity.
+6. Has good documentation and active maintenance.
+7. Can be tested before promotion.
 
 ## Install Targets
 
 - Production Nix package: stable daily tool.
+- Upstream flake/lab: official flake for tools not yet in nixpkgs.
 - Homebrew cask: macOS GUI/vendor app.
 - Manual install: proprietary vendor installer or hardware utility with no reliable Nix/Homebrew path.
 - Lab flake: experimental tool or workflow-specific dependency.
