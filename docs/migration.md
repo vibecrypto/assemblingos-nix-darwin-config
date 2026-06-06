@@ -2,6 +2,14 @@
 
 The source of truth for the current Darwin host is this repository.
 
+For the shortest new-laptop path, start with:
+
+```text
+README.md
+docs/new-laptop-bootstrap.md
+docs/agent-handoff-prompts.md
+```
+
 ## Host
 
 - Host configuration: `DRs-MacBook-Pro`
@@ -53,3 +61,4 @@ darwin-rebuild switch --flake .#DRs-MacBook-Pro
 - Homebrew is managed through `nix-homebrew`.
 - Ignored editor/build files such as `#flake.nix#`, `.swp`, `.swo`, `flake.nix~`, `test`, and `result` do not travel through Git.
 - Linux/NixOS support should be added as separate `nixosConfigurations` later, not inside the active Darwin host.
+- Codex memory is not the source of truth. A new agent should read this repo and the `assemblingos-agent-skills` repo first.
