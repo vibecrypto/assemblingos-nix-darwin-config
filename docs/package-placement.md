@@ -2,6 +2,20 @@
 
 Use the smallest stable layer that matches the tool.
 
+## Agent-First Rule
+
+AssemblingOS should prefer tools that agents can operate reliably:
+
+- stable CLI or local API
+- non-interactive mode
+- predictable stdout/stderr
+- clear exit codes
+- machine-readable output when useful
+- good documentation
+- cross-platform Nix availability when quality is comparable
+
+GUI tools are fine when they are the correct user-facing interface, but they should not be the only path for workflows that need automation.
+
 ## Use Nix System Packages
 
 Use `environment.systemPackages` for stable tools you want available system-wide on this Darwin host:
@@ -45,3 +59,15 @@ Use project-local `flake.nix` devShells for labs:
 ## Use Docker Carefully
 
 Docker can be useful for side services and complex app stacks. Avoid it as the default for real-time macOS audio/video, virtual devices, or Apple Silicon GPU workflows because Docker Desktop on macOS runs inside a Linux VM.
+
+## Example: Archive Extraction
+
+When the task is "extract this downloaded vendor software", choose the tool by file type and automation needs:
+
+- `.zip`: prefer `unzip` for simple ZIP files.
+- mixed archive formats: prefer `the-unarchiver`/`unar` if available.
+- `.7z`: prefer `p7zip`.
+- `.tar.*`: prefer `bsdtar`/`tar`.
+- `.dmg` or `.pkg`: this is macOS installer territory; use macOS-native tooling and document the manual/vendor install.
+
+Do not add an archive tool to production just because it was useful once. Promote it when it becomes part of a repeated workflow.
