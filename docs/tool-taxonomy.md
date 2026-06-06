@@ -16,3 +16,11 @@ This file tracks how tools are grouped in the Darwin system flake.
 ## Promotion Rule
 
 Stable daily tools can live in the production flake. Experimental tools should start in project-local lab flakes before being promoted.
+
+## Placement Rules
+
+- Nix system packages are for stable daily CLI, developer, and reproducible GUI tools that work well from nixpkgs.
+- Homebrew casks are for macOS GUI apps, proprietary apps, drivers, or apps with better Darwin support through Homebrew.
+- Project-local lab flakes are for experimental AI/dev tools, fast-moving stacks, and tools that may not become part of the daily system.
+- Future Home Manager modules should own user behavior: shell config, editor config, Git config, aliases, and per-user package preferences.
+- Future NixOS support should live in Linux-specific host modules. Do not mix Linux host settings into the Darwin modules.

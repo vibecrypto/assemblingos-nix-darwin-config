@@ -10,6 +10,9 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nix-homebrew, ... }: {
+    # Host profile name. Build this machine with:
+    # darwin-rebuild build --flake .#DRs-MacBook-Pro
+    # Change the profile name when this config is copied to a differently named Mac.
     darwinConfigurations."DRs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [
         ./modules/darwin/base.nix
