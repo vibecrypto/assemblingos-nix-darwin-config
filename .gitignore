@@ -11,3 +11,5 @@
 /labs/*/venv
 /labs/*/data
 /labs/*/logs
+/labs/*/services/*/data
+/labs/*/services/*/uv-cache

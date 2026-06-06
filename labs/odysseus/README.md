@@ -24,6 +24,26 @@ The lab provides:
 - sqlite
 - ffmpeg
 
+## ChromaDB Memory Service
+
+Odysseus can start without ChromaDB, but memory, RAG, document search, and tool indexing are degraded until a ChromaDB service is reachable.
+
+Start ChromaDB in a separate terminal:
+
+```bash
+cd /Users/drg/nix-darwin-config/labs/odysseus
+nix develop
+bash scripts/start-chromadb.sh
+```
+
+Then start or restart Odysseus in another terminal. The default Odysseus settings already look for ChromaDB at:
+
+```text
+localhost:8100
+```
+
+Do not install the full `chromadb` package inside Odysseus' `.venv`; keep it as a separate service.
+
 ## First Native Test
 
 Clone Odysseus into a local app folder:
