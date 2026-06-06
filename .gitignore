@@ -5,3 +5,9 @@
 .DS_Store
 /result
 /test
+/labs/*/app
+/labs/*/.env
+/labs/*/.venv
+/labs/*/venv
+/labs/*/data
+/labs/*/logs
