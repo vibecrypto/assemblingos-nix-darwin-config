@@ -25,6 +25,12 @@ The source of truth for the current Darwin host is this repository.
 7. Build the system.
 8. Switch only after the build passes and the host/user values are correct.
 
+For a more practical command-by-command checklist, see:
+
+```text
+docs/new-laptop-bootstrap.md
+```
+
 ## Validate
 
 ```bash
