@@ -7,6 +7,12 @@ The goal is to make a new machine reproducible from Git while keeping experiment
 
 ## Start Here
 
+Every new agent or session should read:
+
+```text
+PROJECT_MEMORY.md
+```
+
 For the first reproducible version, start with:
 
 ```text
