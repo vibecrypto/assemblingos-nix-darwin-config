@@ -2,6 +2,12 @@
 
 Use this checklist to move AssemblingOS to a new MacBook.
 
+The current command-by-command first-version guide is:
+
+```text
+docs/install-macos.md
+```
+
 ## Goal
 
 Bring the new laptop to the same reproducible Darwin system state from Git, without copying local caches, virtual environments, lab data, model downloads, or editor temp files.

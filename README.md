@@ -1,15 +1,19 @@
 # AssemblingOS
 
-AssemblingOS is a Nix-centered work environment for macOS/Darwin first, with Linux/NixOS support planned as a first-class path.
+AssemblingOS is a Nix-centered reproducible work environment for macOS/Darwin
+and NixOS.
 
 The goal is to make a new machine reproducible from Git while keeping experimental tools isolated in labs.
 
 ## Start Here
 
-For a new MacBook setup, start with:
+For the first reproducible version, start with:
 
 ```text
-docs/new-laptop-bootstrap.md
+docs/first-version-architecture.md
+docs/install-macos.md
+docs/windows-dual-boot-preflight.md
+docs/install-nixos.md
 ```
 
 For a prompt to give Codex or another coding agent on the new laptop, use:
@@ -28,13 +32,16 @@ docs/tool-taxonomy.md
 
 ## Repository Roles
 
-This repository is the production Darwin system source of truth:
+This repository is the system source of truth:
 
 - shared system packages
 - Darwin modules
+- NixOS modules and host bootstrap
+- shared Home Manager configuration
 - Homebrew declarations managed through nix-darwin/nix-homebrew
 - documentation
 - project-local labs
+- cross-platform project templates
 
 Agent skills live in a separate repository:
 
@@ -47,7 +54,8 @@ Keep skills separate because they should be reusable by Codex, Claude, OpenCode,
 ## Safety Rules
 
 - Build before switch.
-- Do not run `darwin-rebuild switch` until the build passes.
+- Do not run `darwin-rebuild switch` or `nixos-rebuild switch` until the build
+  passes.
 - Keep experimental tools in `labs/` first.
 - Do not commit `.env`, `.venv`, app clones, model caches, or local data.
 - Commit every verified logical change.
@@ -71,4 +79,22 @@ Apply only when ready:
 
 ```bash
 darwin-rebuild switch --flake .#DRs-MacBook-Pro
+```
+
+## Prepared Hosts
+
+```text
+Darwin:
+  DRs-MacBook-Pro
+  AssemblingOS-MacBook-Pro
+
+NixOS:
+  assemblingos-vm
+  windows-laptop (appears after importing real hardware configuration)
+```
+
+Inspect everything without applying:
+
+```bash
+bash scripts/doctor.sh
 ```

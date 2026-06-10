@@ -1,4 +1,10 @@
-{ ... }: {
+{
+  hostName,
+  primaryUser,
+  system,
+  ...
+}:
+{
   # Determinate Systems manages the Nix installation and updates.
   nix.enable = false;
 
@@ -11,14 +17,15 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # Active platform for this MacBook Pro M1.
-  # Examples for other hosts are documented in docs/platforms.md.
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  # Active platform for this Darwin host.
+  nixpkgs.hostPlatform = system;
+
+  networking.hostName = hostName;
 
   programs.zsh.enable = true;
 
-  # Primary macOS user for nix-darwin options that need an owning user.
-  # Change this when moving the config to a machine with a different username.
-  system.primaryUser = "drg";
+  # Primary macOS user supplied by the host definition in flake.nix.
+  system.primaryUser = primaryUser;
+  users.users.${primaryUser}.home = "/Users/${primaryUser}";
   system.stateVersion = 6;
 }
