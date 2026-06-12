@@ -10,5 +10,8 @@
     keymapp
     raycast
     whatsapp-for-mac
+
+    # Creator diagnostics and media inspection
+    ffmpeg
   ];
 }

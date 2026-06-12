@@ -52,7 +52,7 @@ Last verified:
 Notes:
 ```
 
-## Example
+## Blackmagic ATEM
 
 ```text
 Tool: Blackmagic ATEM Switchers / ATEM Software Control
@@ -61,6 +61,19 @@ Official source: https://www.blackmagicdesign.com/support
 Installer type: Vendor download, usually archive/dmg/pkg depending release.
 Reason not managed by Nix/Homebrew: Official hardware vendor installer; not reliably available in nixpkgs/Homebrew.
 Installed files or expected locations: Blackmagic apps/utilities under /Applications and support files under system locations.
-Last verified:
-Notes: Inspect downloaded artifact before install. Ask before running package installer or firmware utility.
+Last verified: 2026-06-12
+Notes: ATEM Mini Extreme ISO and ATEM Software Control were detected. Inspect future downloads before install and ask before package or firmware changes.
+```
+
+## Audient EVO
+
+```text
+Tool: Audient EVO / EVO Control
+Purpose: Configure the EVO8 audio interface, mixer, routing, and input gain.
+Official source: https://audient.com/products/audio-interfaces/evo-8/downloads/
+Installer type: Vendor software available after product registration through Audient ARC.
+Reason not managed by Nix/Homebrew: Gated proprietary hardware utility.
+Installed files or expected locations: /Applications/EVO.app and ~/Library/Application Support/Audient/EVO.
+Last verified: 2026-06-12
+Notes: EVO 4.4.0 was installed and EVO8 was detected. Review 48 V phantom power before importing presets.
 ```

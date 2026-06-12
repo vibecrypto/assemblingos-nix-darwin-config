@@ -36,6 +36,12 @@ docs/tool-selection-workflow.md
 docs/tool-taxonomy.md
 ```
 
+For the reproducible macOS creator setup, read:
+
+```text
+docs/creator-workstation.md
+```
+
 ## Repository Roles
 
 This repository is the system source of truth:

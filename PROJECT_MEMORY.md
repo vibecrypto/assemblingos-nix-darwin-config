@@ -1,6 +1,6 @@
 # AssemblingOS Project Memory
 
-Last reviewed: June 10, 2026
+Last reviewed: June 12, 2026
 
 Read this file first when continuing AssemblingOS from a new agent, session, or
 machine. The Git repository is the portable source of truth. Chat memory is
@@ -83,6 +83,7 @@ the physical laptop.
 - `templates/python/`: Python 3.12 and uv project template
 - `labs/`: experimental applications such as Herdr and Odysseus
 - `scripts/`: build, diagnosis, and hardware-import helpers
+- `creator/`: portable OBS and EVO creator-profile assets
 - `docs/`: installation, migration, placement, and safety documentation
 
 ## Current Shared User Configuration
@@ -125,6 +126,22 @@ labs/odysseus
 
 Odysseus runtime data, `.venv`, application clone, ChromaDB data, models, and
 caches are local state and are not the portable source of truth.
+
+## Creator Profile
+
+The macOS creator profile lives in:
+
+```text
+creator/
+docs/creator-workstation.md
+scripts/bootstrap-creator.sh
+scripts/creator-doctor.sh
+```
+
+It reproduces the OBS baseline and EVO8 preset while excluding stream keys,
+tokens, WebSocket passwords, hardware serial numbers, display UUIDs, and other
+machine-specific identifiers. Camera/microphone selection and macOS permissions
+remain explicit one-time bindings on each Mac.
 
 ## Core Placement Rules
 
