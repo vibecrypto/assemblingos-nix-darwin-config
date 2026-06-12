@@ -18,16 +18,15 @@ nixpkgs.hostPlatform = "aarch64-darwin";
 - x86_64 Linux/NixOS: `x86_64-linux`
 - ARM Linux/NixOS: `aarch64-linux`
 
-Linux support should be added as separate host outputs later:
+Linux support is implemented as separate host outputs:
 
 ```nix
-nixosConfigurations."<linux-hostname>" = nixpkgs.lib.nixosSystem {
-  system = "x86_64-linux";
-  modules = [
-    ./modules/nixos/base.nix
-  ];
-};
+nixosConfigurations.assemblingos-vm
+nixosConfigurations.windows-laptop
 ```
+
+`windows-laptop` appears only after its real installer-generated
+`hardware-configuration.nix` exists.
 
 Do not add Linux platforms to a Darwin host's `nixpkgs.hostPlatform`.
 

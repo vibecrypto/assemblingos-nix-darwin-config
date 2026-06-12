@@ -17,8 +17,10 @@
       # "Yoink" = 457622435;
     };
 
-    onActivation.cleanup = "zap";
-    onActivation.autoUpdate = true;
-    onActivation.upgrade = true;
+    # Keep first activation non-destructive and repeatable. Tighten cleanup only
+    # after every existing brew/cask has been reviewed and declared.
+    onActivation.cleanup = "none";
+    onActivation.autoUpdate = false;
+    onActivation.upgrade = false;
   };
 }

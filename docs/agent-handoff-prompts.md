@@ -24,6 +24,9 @@ Before doing anything:
 5. Summarize the current state, detected machine, intended host profile, and
    next safe step.
 
+Ignore the obsolete ~/.config/nix-darwin checkout. The only system source of
+truth is ~/nix-darwin-config.
+
 Do not install, modify, rebuild, switch, repartition, commit, or push until I
 confirm.
 ```
@@ -61,6 +64,7 @@ First:
    - PROJECT_MEMORY.md
    - README.md
    - docs/install-macos.md
+   - docs/pre-move-checklist.md
    - docs/host-inventory.md
 3. Run read-only checks:
    - whoami
@@ -72,6 +76,10 @@ First:
    host in flake.nix.
 5. Tell me exactly what matches, what must change, and which command you propose
    next.
+6. Confirm that the system repo and the private
+   `assemblingos-agent-skills` repo are on clean, synchronized `main` branches.
+7. Check whether global Git author name and email are configured. Ask me for
+   the intended values instead of guessing.
 
 Stop and ask for confirmation before:
 - installing Nix
@@ -86,6 +94,8 @@ After I approve installation:
 3. Show the build result.
 4. Ask separately before the first switch.
 5. After switch, run scripts/doctor.sh and verify the declared tools.
+6. Clone `assemblingos-agent-skills`, install its Codex skills, verify them,
+   and restart Codex.
 ```
 
 ## NixOS Dual-Boot Agent Prompt

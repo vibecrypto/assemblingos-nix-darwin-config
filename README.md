@@ -42,6 +42,12 @@ For the reproducible macOS creator setup, read:
 docs/creator-workstation.md
 ```
 
+Before retiring or moving away from the current Mac, read:
+
+```text
+docs/pre-move-checklist.md
+```
+
 ## Repository Roles
 
 This repository is the system source of truth:

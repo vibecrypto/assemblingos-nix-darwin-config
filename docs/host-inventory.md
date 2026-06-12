@@ -14,6 +14,9 @@ macOS version:
 macOS username:
 Current LocalHostName:
 Desired AssemblingOS host profile:
+GitHub username:
+Git author name:
+Git author email:
 Primary profiles: Vibe Coder / Creator / Local AI / Agent Host
 ```
 

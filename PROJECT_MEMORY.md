@@ -45,6 +45,9 @@ Agent skills are maintained separately so they remain agent-agnostic:
 assemblingos-agent-skills
 ```
 
+The old checkout at `~/.config/nix-darwin` is obsolete and is not a migration
+source. Do not merge, copy, or switch from it.
+
 ## Current Implemented Hosts
 
 Darwin:
@@ -198,6 +201,20 @@ sandbox.
   user approval.
 - Never automate disk repartitioning.
 
+## Migration Safety
+
+- The prepared second-Mac host is `AssemblingOS-MacBook-Pro`.
+- Home Manager is already enabled on Darwin and NixOS.
+- Homebrew activation is intentionally non-destructive:
+  - cleanup is `none`
+  - automatic update is disabled
+  - automatic upgrade is disabled
+- Read `docs/pre-move-checklist.md` before retiring the current Mac.
+- Git does not contain Odysseus runtime data, ChromaDB data, local model
+  downloads, Codex sessions, SSH private keys, or personal content files.
+- Personal Codex skills are restored from the private
+  `assemblingos-agent-skills` repository.
+
 ## Validation Evidence
 
 The first reproducible version was validated with:
@@ -258,6 +275,8 @@ Second Mac:
 - `uname -m`
 - `scutil --get LocalHostName`
 - desired host profile
+- GitHub username
+- intended Git author name and email
 
 Windows/NixOS laptop:
 
@@ -273,17 +292,18 @@ Windows/NixOS laptop:
 
 ## Recommended Next Steps
 
-1. Complete `docs/host-inventory.md`.
-2. Install and validate the second Mac using `docs/install-macos.md`.
-3. Do not install NixOS until backups, recovery media, BitLocker information,
+1. Complete the pre-move decisions in `docs/pre-move-checklist.md`.
+2. Complete `docs/host-inventory.md` on the second Mac.
+3. Install and validate the second Mac using `docs/install-macos.md`.
+4. Do not install NixOS until backups, recovery media, BitLocker information,
    and partition planning are complete.
-4. Test the NixOS live environment and hardware.
-5. Install NixOS beside Windows.
-6. Import the generated hardware configuration using
+5. Test the NixOS live environment and hardware.
+6. Install NixOS beside Windows.
+7. Import the generated hardware configuration using
    `scripts/prepare-nixos-host.sh`.
-7. Build before switching.
-8. Commit the verified physical host configuration.
-9. Test one Node and one Python project on both systems.
+8. Build before switching.
+9. Commit the verified physical host configuration.
+10. Test one Node and one Python project on both systems.
 
 ## New Agent Startup Contract
 

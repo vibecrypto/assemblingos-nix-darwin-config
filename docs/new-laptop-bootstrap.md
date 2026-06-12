@@ -22,7 +22,7 @@ Use GitHub as the portable source of truth:
 Confirm these values on the new laptop:
 
 - macOS username: currently `drg`
-- host profile name: currently `DRs-MacBook-Pro`
+- prepared host profile name: `AssemblingOS-MacBook-Pro`
 - platform: Apple Silicon uses `aarch64-darwin`
 - Nix installer: Determinate Systems is expected
 - GitHub access: SSH key or HTTPS token configured enough to clone private repos
@@ -36,7 +36,7 @@ system.primaryUser = "drg";
 If the host profile name should change, update the output name in `flake.nix` and use the same name in rebuild commands:
 
 ```bash
-darwin-rebuild build --flake .#DRs-MacBook-Pro
+darwin-rebuild build --flake .#AssemblingOS-MacBook-Pro
 ```
 
 ## Bootstrap Steps
@@ -48,7 +48,7 @@ darwin-rebuild build --flake .#DRs-MacBook-Pro
 
 ```bash
 cd ~
-git clone <ASSEMBLINGOS_NIX_DARWIN_REPO_URL> nix-darwin-config
+git clone git@github.com:vibecrypto/assemblingos-nix-darwin-config.git nix-darwin-config
 ```
 
 5. Enter the repo:
@@ -60,9 +60,9 @@ cd ~/nix-darwin-config
 6. Read the local docs before changing the system:
 
 ```bash
-sed -n '1,220p' README.md
-sed -n '1,260p' docs/migration.md
-sed -n '1,260p' docs/package-placement.md
+sed -n '1,260p' PROJECT_MEMORY.md
+sed -n '1,320p' docs/install-macos.md
+sed -n '1,320p' docs/pre-move-checklist.md
 ```
 
 7. Validate the flake:
@@ -74,13 +74,14 @@ nix flake show --no-write-lock-file
 8. Build without changing the active system:
 
 ```bash
-darwin-rebuild build --flake .#DRs-MacBook-Pro
+bash scripts/bootstrap-darwin.sh AssemblingOS-MacBook-Pro
 ```
 
 9. Switch only after the build passes and the username/profile values are correct:
 
 ```bash
-darwin-rebuild switch --flake .#DRs-MacBook-Pro
+sudo nix run nix-darwin/master#darwin-rebuild -- switch \
+  --flake .#AssemblingOS-MacBook-Pro
 ```
 
 ## Install AssemblingOS Skills
@@ -89,7 +90,7 @@ Clone the skills repository:
 
 ```bash
 cd ~
-git clone <ASSEMBLINGOS_AGENT_SKILLS_REPO_URL> assemblingos-agent-skills
+git clone git@github.com:vibecrypto/assemblingos-agent-skills.git
 ```
 
 Install the Codex adapter:
@@ -97,6 +98,7 @@ Install the Codex adapter:
 ```bash
 cd ~/assemblingos-agent-skills
 nix run .#install-agent-skills -- codex
+nix run .#verify-agent-skills -- codex
 ```
 
 Restart Codex after installing or updating skills.
@@ -144,6 +146,7 @@ Do not migrate through Git:
 - editor temp files
 - Codex temporary attachments
 - old manual app clones
+- the obsolete `~/.config/nix-darwin` checkout
 
 ## After First Switch
 
@@ -167,11 +170,13 @@ Check Codex skill installation:
 
 ```bash
 test -f ~/.codex/skills/assemblingos-tool-evaluator/SKILL.md
+test -f ~/.codex/skills/skool-message-assistant/SKILL.md
+test -f ~/.codex/skills/clear-english-communication-coach/SKILL.md
 ```
 
 ## Next Layer
 
-After the Darwin system works on the new laptop, add Home Manager as a separate phase for user-level configuration:
+Home Manager is already integrated for the shared baseline:
 
 - shell aliases/functions
 - Git identity
@@ -179,4 +184,4 @@ After the Darwin system works on the new laptop, add Home Manager as a separate 
 - agent config files
 - dotfiles
 
-Do not mix Home Manager migration with the first system migration unless there is a specific blocker.
+Expand it only after the first system migration is stable.
