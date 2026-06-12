@@ -85,14 +85,16 @@ Portable creator files installed.
 
 One-time bindings that macOS or the hardware vendor must handle:
 1. OBS Studio -> Review App Permissions:
-   enable Screen Recording, Camera, Microphone, and Accessibility.
+   enable Screen Recording, Microphone, and Accessibility.
 2. Audio MIDI Setup:
    set EVO8 to 48,000 Hz to match OBS.
 3. EVO:
-   load the "assemblingos-creator" preset only after confirming that input 1
-   should use 48 V phantom power.
+   load the "assemblingos-creator" preset, connect the Shure microphone to
+   input 1, and enable 48 V only if the exact microphone or inline preamp
+   requires it.
 4. OBS:
-   select EVO8 for the microphone and ATEM Mini Extreme ISO for video capture.
+   capture the screen and select the output of the AI voice-processing layer
+   as the microphone source. EVO8 remains the physical Shure input.
 5. Run:
    bash scripts/creator-doctor.sh
 

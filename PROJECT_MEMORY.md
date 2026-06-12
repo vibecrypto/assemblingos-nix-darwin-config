@@ -138,10 +138,11 @@ scripts/bootstrap-creator.sh
 scripts/creator-doctor.sh
 ```
 
-It reproduces the OBS baseline and EVO8 preset while excluding stream keys,
-tokens, WebSocket passwords, hardware serial numbers, display UUIDs, and other
-machine-specific identifiers. Camera/microphone selection and macOS permissions
-remain explicit one-time bindings on each Mac.
+It reproduces the OBS baseline and EVO8 preset for a screen-only workflow with
+a Shure microphone connected to EVO8 and an optional AI voice-processing layer.
+It excludes stream keys, tokens, WebSocket passwords, hardware serial numbers,
+display UUIDs, and other machine-specific identifiers. Audio routing and macOS
+permissions remain explicit one-time bindings on each Mac.
 
 ## Core Placement Rules
 

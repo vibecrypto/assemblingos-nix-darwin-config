@@ -17,14 +17,20 @@ Inspect the AssemblingOS creator workstation without changing it.
 Usage:
   bash scripts/creator-doctor.sh
   bash scripts/creator-doctor.sh --public
+  bash scripts/creator-doctor.sh --with-camera
 
 --public omits machine-identifying details so the output is safer to share.
+--with-camera also verifies camera/capture-card permission. Screen-only mode
+does not require it.
 EOF
 }
+
+with_camera=false
 
 for arg in "$@"; do
   case "$arg" in
     --public) public_output=true ;;
+    --with-camera) with_camera=true ;;
     --help|-h)
       usage
       exit 0
@@ -162,10 +168,12 @@ if [[ -n "$latest_log" ]]; then
     warn "OBS screen recording permission was not confirmed."
   fi
 
-  if grep -q 'Permission for video device access granted' "$latest_log"; then
-    ok "OBS camera permission is granted."
+  if $with_camera && grep -q 'Permission for video device access granted' "$latest_log"; then
+    ok "OBS camera/capture-card permission is granted."
+  elif $with_camera; then
+    warn "OBS camera/capture-card permission is missing."
   else
-    warn "OBS camera permission is missing; ATEM video capture cannot be considered ready."
+    ok "Screen-only mode does not require camera permission."
   fi
 
   if grep -q 'Permission for input monitoring granted' "$latest_log"; then

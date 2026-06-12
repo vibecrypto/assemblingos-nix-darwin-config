@@ -4,6 +4,13 @@ This profile makes the software and baseline recording configuration portable
 without copying secrets or pretending that physical hardware identifiers are
 the same on every Mac.
 
+The current production path is screen-only:
+
+```text
+Shure microphone -> EVO8 -> AI voice-processing layer -> OBS
+Screen capture -------------------------------------------> OBS
+```
+
 ## Included
 
 - OBS Studio declared through nix-homebrew
@@ -39,14 +46,21 @@ bash scripts/creator-doctor.sh --public
 
 These cannot be safely copied between machines:
 
-1. Grant OBS Screen Recording, Camera, Microphone, and Accessibility
-   permissions from `OBS Studio -> Review App Permissions`.
+1. Grant OBS Screen Recording, Microphone, and Accessibility permissions from
+   `OBS Studio -> Review App Permissions`. Camera permission is intentionally
+   not required for the screen-only workflow.
 2. In Audio MIDI Setup, set EVO8 to 48,000 Hz.
-3. In EVO, load `assemblingos-creator` only after confirming the microphone on
-   input 1 requires 48 V phantom power.
-4. In OBS, select EVO8 as the microphone.
-5. In OBS, add ATEM Mini Extreme ISO as the video capture device.
+3. Connect the Shure microphone to EVO8 input 1 and load
+   `assemblingos-creator`. Enable 48 V only if that exact microphone or an
+   inline preamp requires it.
+4. Configure the voice-processing application to receive EVO8 and provide its
+   processed virtual output to OBS.
+5. In OBS, select the processed voice output as the microphone source.
 6. Select the screen or window to capture on that Mac.
+
+ATEM remains installed and detectable for future capture-card use, but it is
+not required for the current screen-only workflow. Run
+`scripts/creator-doctor.sh --with-camera` only when adding camera or ATEM video.
 
 macOS permissions, display UUIDs, USB location-derived device IDs, stream keys,
 account tokens, and OBS WebSocket passwords are intentionally excluded.
@@ -58,10 +72,11 @@ On June 12, 2026:
 - OBS 32.1.1, EVO 4.4.0, and ATEM Software Control were installed.
 - EVO8 and ATEM Mini Extreme ISO were detected over USB.
 - OBS audio and screen recording permissions were granted.
-- OBS camera and input-monitoring permissions were not granted.
+- OBS input-monitoring permission was not granted. Camera permission is not
+  required for the current screen-only workflow.
 - OBS used 48 kHz, but EVO8 was initialized at 96 kHz.
 - The OBS log recorded EVO8 device lookup/reconnection errors and fallbacks to
-  Voicemod and the MacBook microphone.
+  the AI voice-processing layer and the MacBook microphone.
 - OBS WebSocket had authentication enabled; its password is not portable and
   must never be committed.
 
