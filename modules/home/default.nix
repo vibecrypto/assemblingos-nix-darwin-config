@@ -15,13 +15,25 @@
     # Keep this value stable after the first Home Manager activation.
     stateVersion = "26.05";
 
-    # AI coding agents — used by the person, so they live in the per-user
-    # Home Manager profile rather than system-wide. Cross-platform (Darwin + Linux).
+    # User-facing tooling lives here (not environment.systemPackages) so it
+    # travels with the person and stays portable across Darwin/Linux. The system
+    # keeps only a tiny recovery baseline; see modules/shared/packages.nix.
     packages = with pkgs; [
+      # AI coding agents
       codex
       opencode
       claude-code
       pi-coding-agent
+
+      # Editor / shell tools
+      emacs
+      wget
+      fzf
+
+      # Developer tooling
+      lua-language-server
+      ty
+      ruff
     ];
   };
 
