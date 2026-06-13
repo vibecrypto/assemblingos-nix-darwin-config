@@ -52,6 +52,8 @@
           modules = [
             ./modules/darwin/base.nix
             ./modules/shared/packages.nix
+            ./modules/shared/auto-upgrade.nix
+            ./modules/darwin/auto-upgrade.nix
             ./modules/darwin/packages.nix
             ./modules/darwin/homebrew.nix
             nix-homebrew.darwinModules.nix-homebrew
@@ -87,6 +89,8 @@
             ./modules/nixos/base.nix
             ./modules/nixos/desktop-gnome.nix
             ./modules/shared/packages.nix
+            ./modules/shared/auto-upgrade.nix
+            ./modules/nixos/auto-upgrade.nix
             home-manager.nixosModules.home-manager
             (mkHomeManager { inherit primaryUser; })
           ] ++ extraModules;
