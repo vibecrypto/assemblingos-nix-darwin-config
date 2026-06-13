@@ -53,6 +53,7 @@
             ./modules/darwin/base.nix
             ./modules/shared/packages.nix
             ./modules/shared/auto-upgrade.nix
+            ./modules/shared/update-command.nix
             ./modules/darwin/auto-upgrade.nix
             ./modules/darwin/packages.nix
             ./modules/darwin/homebrew.nix
@@ -90,6 +91,7 @@
             ./modules/nixos/desktop-gnome.nix
             ./modules/shared/packages.nix
             ./modules/shared/auto-upgrade.nix
+            ./modules/shared/update-command.nix
             ./modules/nixos/auto-upgrade.nix
             home-manager.nixosModules.home-manager
             (mkHomeManager { inherit primaryUser; })
