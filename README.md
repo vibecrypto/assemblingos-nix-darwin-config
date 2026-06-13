@@ -80,24 +80,34 @@ Keep skills separate because they should be reusable by Codex, Claude, OpenCode,
 
 ## Current Darwin Host
 
-Current host profile:
+Active host profile (M1 Max, macOS user `thecaio`):
 
 ```text
-DRs-MacBook-Pro
+AssemblingOS-MacBook-Pro
 ```
 
 Validate:
 
 ```bash
 nix flake show --no-write-lock-file
-darwin-rebuild build --flake .#DRs-MacBook-Pro
+darwin-rebuild build --flake .#AssemblingOS-MacBook-Pro
 ```
 
 Apply only when ready:
 
 ```bash
-darwin-rebuild switch --flake .#DRs-MacBook-Pro
+darwin-rebuild switch --flake .#AssemblingOS-MacBook-Pro
 ```
+
+Day to day, prefer the update command (build-before-switch, then releases the
+new lock):
+
+```bash
+assemblingos-update
+```
+
+See `docs/updating.md` for the full update model. `DRs-MacBook-Pro` remains the
+original host profile.
 
 ## Prepared Hosts
 

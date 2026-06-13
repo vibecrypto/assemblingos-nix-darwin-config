@@ -53,8 +53,8 @@ source. Do not merge, copy, or switch from it.
 Darwin:
 
 ```text
-DRs-MacBook-Pro
-AssemblingOS-MacBook-Pro
+DRs-MacBook-Pro          # original drg machine
+AssemblingOS-MacBook-Pro # active: M1 Max, macOS user "thecaio"
 ```
 
 NixOS:
@@ -93,7 +93,7 @@ the physical laptop.
 
 Home Manager currently manages a deliberately small baseline:
 
-- Git
+- Git (declarative identity: name + privacy noreply email)
 - GitHub CLI
 - Zsh
 - completion
@@ -102,7 +102,8 @@ Home Manager currently manages a deliberately small baseline:
 - direnv
 - nix-direnv
 
-Home Manager is integrated into both nix-darwin and NixOS.
+Home Manager is integrated into both nix-darwin and NixOS, and tracks the
+unstable branch to match `nixpkgs-unstable` (avoids release/unstable skew).
 
 ## Current Shared System Tools
 
@@ -110,8 +111,25 @@ Home Manager is integrated into both nix-darwin and NixOS.
 - wget, fzf, ripgrep, fd, and jq
 - Codex, OpenCode, Claude Code, and Pi
 - Lua language server, ty, and Ruff
+- `assemblingos-update` (on-demand update + release command; see Updating)
 
 Darwin separately includes macOS applications and Homebrew casks.
+
+## Updating
+
+New package versions enter the system only by moving the `flake.lock` pin
+forward (`nix flake update`) and rebuilding. Two complementary mechanisms:
+
+- `assemblingos-update` (on-demand, maintainer): sync repo -> `nix flake update`
+  -> build -> only on success switch -> commit & push the new lock. Build before
+  switch is enforced. Defined in `modules/shared/update-command.nix`.
+- `assemblingos.autoUpgrade.enable` (scheduled, opt-in, off by default): rebuilds
+  from the published flake on a timer (launchd on Darwin, `system.autoUpgrade` on
+  NixOS). Fleet/pull model — machines converge on the maintainer's committed pin.
+  Defined in `modules/shared/auto-upgrade.nix` + the per-platform modules.
+
+GUI apps stay in nixpkgs (not Homebrew) so they remain reproducible and
+cross-platform; Homebrew is reserved for macOS-only gaps.
 
 ## Labs
 
