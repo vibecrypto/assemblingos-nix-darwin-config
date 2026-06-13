@@ -4,7 +4,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
+    # Track unstable to match nixpkgs (release branches lag nixpkgs-unstable and
+    # eventually fail to evaluate against it).
+    home-manager.url = "github:nix-community/home-manager/master";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -101,11 +103,12 @@
         primaryUser = "drg";
       };
 
-      # Reproducible second-Mac profile. Rename or adjust this host before switch
-      # if the macOS username or desired profile name differs.
+      # Reproducible second-Mac profile. Claimed by the M1 Max MacBook Pro whose
+      # macOS user is "thecaio" (hostname will be set to AssemblingOS-MacBook-Pro
+      # on switch).
       darwinConfigurations."AssemblingOS-MacBook-Pro" = mkDarwinHost {
         hostName = "AssemblingOS-MacBook-Pro";
-        primaryUser = "drg";
+        primaryUser = "thecaio";
       };
 
       # The physical host appears after scripts/prepare-nixos-host.sh copies the

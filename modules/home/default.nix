@@ -19,7 +19,13 @@
   programs = {
     home-manager.enable = true;
 
-    git.enable = true;
+    git = {
+      enable = true;
+      # Privacy noreply address keeps the real email out of every commit while
+      # still attributing commits to the GitHub account.
+      userName = "Vibe";
+      userEmail = "291395314+vibecrypto@users.noreply.github.com";
+    };
     gh.enable = true;
 
     zsh = {
