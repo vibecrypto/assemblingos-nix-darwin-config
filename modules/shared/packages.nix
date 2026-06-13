@@ -12,12 +12,6 @@
     fd
     jq
 
-    # AI coding agents available on both Darwin and Linux
-    codex
-    opencode
-    claude-code
-    pi-coding-agent
-
     # Developer tooling
     lua-language-server
     ty

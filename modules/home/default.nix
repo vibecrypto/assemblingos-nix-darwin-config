@@ -14,6 +14,15 @@
 
     # Keep this value stable after the first Home Manager activation.
     stateVersion = "26.05";
+
+    # AI coding agents — used by the person, so they live in the per-user
+    # Home Manager profile rather than system-wide. Cross-platform (Darwin + Linux).
+    packages = with pkgs; [
+      codex
+      opencode
+      claude-code
+      pi-coding-agent
+    ];
   };
 
   programs = {
