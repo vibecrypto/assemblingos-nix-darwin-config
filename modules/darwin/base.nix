@@ -31,11 +31,11 @@
   programs.zsh.enable = true;
 
   # On-brand prompt for every terminal, scoped to this host (overrides
-  # nix-darwin's default `prompt suse`): user@host with the host in teal, the
-  # current dir dimmed grey, and a green caret —
-  # e.g. "thecaio@AssemblingOS ~/Claude ❯ ".
+  # nix-darwin's default `prompt suse`): the THECAIO brand mark in bold crimson,
+  # the host in teal, the current dir dimmed grey, and a green caret —
+  # e.g. "THECAIO@AssemblingOS ~/Claude ❯ ".
   programs.zsh.promptInit = lib.mkIf (hostName == "AssemblingOS") ''
-    PROMPT='%n@%F{37}%m%f %F{244}%~%f %F{green}❯%f '
+    PROMPT='%B%F{160}THECAIO%f%b@%F{37}%m%f %F{244}%~%f %F{green}❯%f '
   '';
 
   # Primary macOS user supplied by the host definition in flake.nix.
