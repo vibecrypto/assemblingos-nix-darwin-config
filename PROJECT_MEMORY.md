@@ -54,7 +54,7 @@ Darwin:
 
 ```text
 DRs-MacBook-Pro          # original drg machine
-AssemblingOS-MacBook-Pro # active: M1 Max, macOS user "thecaio"
+AssemblingOS # active: M1 Max, macOS user "thecaio"
 ```
 
 NixOS:
@@ -221,7 +221,7 @@ sandbox.
 
 ## Migration Safety
 
-- The prepared second-Mac host is `AssemblingOS-MacBook-Pro`.
+- The prepared second-Mac host is `AssemblingOS`.
 - Home Manager is already enabled on Darwin and NixOS.
 - Homebrew activation is intentionally non-destructive:
   - cleanup is `none`
@@ -239,7 +239,7 @@ The first reproducible version was validated with:
 
 - `nix flake check --no-build`
 - Darwin build for `DRs-MacBook-Pro`
-- Darwin build for `AssemblingOS-MacBook-Pro`
+- Darwin build for `AssemblingOS`
 - NixOS VM evaluation
 - temporary evaluation of the conditional physical NixOS host
 - Node template smoke test using Node 22

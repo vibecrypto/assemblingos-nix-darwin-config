@@ -110,10 +110,10 @@
       };
 
       # Reproducible second-Mac profile. Claimed by the M1 Max MacBook Pro whose
-      # macOS user is "thecaio" (hostname will be set to AssemblingOS-MacBook-Pro
+      # macOS user is "thecaio" (hostname will be set to AssemblingOS
       # on switch).
-      darwinConfigurations."AssemblingOS-MacBook-Pro" = mkDarwinHost {
-        hostName = "AssemblingOS-MacBook-Pro";
+      darwinConfigurations."AssemblingOS" = mkDarwinHost {
+        hostName = "AssemblingOS";
         primaryUser = "thecaio";
       };
 

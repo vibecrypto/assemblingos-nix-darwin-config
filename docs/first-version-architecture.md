@@ -10,7 +10,7 @@ project tools on NixOS.
 Git repository
   |
   +-- Darwin host: DRs-MacBook-Pro
-  +-- Darwin host: AssemblingOS-MacBook-Pro
+  +-- Darwin host: AssemblingOS
   +-- NixOS validation VM: assemblingos-vm
   +-- NixOS physical host: windows-laptop
   |

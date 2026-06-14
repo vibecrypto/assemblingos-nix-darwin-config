@@ -1,4 +1,5 @@
 {
+  lib,
   hostName,
   primaryUser,
   system,
@@ -20,9 +21,21 @@
   # Active platform for this Darwin host.
   nixpkgs.hostPlatform = system;
 
+  # One declared name drives every macOS identity: the shell prompt / ssh
+  # (HostName), the Sharing + AirDrop name (ComputerName), and the Bonjour
+  # ".local" name (LocalHostName, which `assemblingos-update` keys off).
   networking.hostName = hostName;
+  networking.computerName = hostName;
+  networking.localHostName = hostName;
 
   programs.zsh.enable = true;
+
+  # Minimal, on-brand prompt for every terminal: just "user@host " — no path,
+  # no "> ". Overrides nix-darwin's default `prompt suse` theme. Scoped to this
+  # host so other machines in the fleet keep their own prompt.
+  programs.zsh.promptInit = lib.mkIf (hostName == "AssemblingOS") ''
+    PROMPT='%n@%m '
+  '';
 
   # Primary macOS user supplied by the host definition in flake.nix.
   system.primaryUser = primaryUser;

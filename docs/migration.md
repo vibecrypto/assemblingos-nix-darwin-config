@@ -13,7 +13,7 @@ docs/agent-handoff-prompts.md
 ## Host
 
 - Existing-Mac configuration: `DRs-MacBook-Pro`
-- Prepared second-Mac configuration: `AssemblingOS-MacBook-Pro`
+- Prepared second-Mac configuration: `AssemblingOS`
 - Platform: `aarch64-darwin`
 - Primary user: `drg`
 
@@ -22,7 +22,7 @@ docs/agent-handoff-prompts.md
 1. Install Nix using the Determinate Systems installer.
 2. Clone or copy this repository onto the new machine.
 3. Check the host profile in `flake.nix`.
-   - New Mac profile: `AssemblingOS-MacBook-Pro`
+   - New Mac profile: `AssemblingOS`
    - Build command uses the profile after `.#`.
 4. Check the primary user in `modules/darwin/base.nix`.
    - Current user: `drg`
@@ -44,7 +44,7 @@ docs/new-laptop-bootstrap.md
 
 ```bash
 nix flake show --no-write-lock-file
-bash scripts/bootstrap-darwin.sh AssemblingOS-MacBook-Pro
+bash scripts/bootstrap-darwin.sh AssemblingOS
 ```
 
 ## Apply
@@ -53,7 +53,7 @@ Run this only after a build passes and you are ready to change the active system
 
 ```bash
 sudo nix run nix-darwin/master#darwin-rebuild -- switch \
-  --flake .#AssemblingOS-MacBook-Pro
+  --flake .#AssemblingOS
 ```
 
 ## Notes

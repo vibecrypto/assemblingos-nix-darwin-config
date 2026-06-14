@@ -25,7 +25,7 @@ Prepared defaults:
 ```text
 Architecture: aarch64-darwin
 Username: drg
-Host profile: AssemblingOS-MacBook-Pro
+Host profile: AssemblingOS
 ```
 
 ## Windows/NixOS Laptop

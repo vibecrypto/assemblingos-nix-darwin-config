@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-HOST="${1:-AssemblingOS-MacBook-Pro}"
+HOST="${1:-AssemblingOS}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then

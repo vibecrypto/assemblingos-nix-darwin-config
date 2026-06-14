@@ -83,20 +83,20 @@ Keep skills separate because they should be reusable by Codex, Claude, OpenCode,
 Active host profile (M1 Max, macOS user `thecaio`):
 
 ```text
-AssemblingOS-MacBook-Pro
+AssemblingOS
 ```
 
 Validate:
 
 ```bash
 nix flake show --no-write-lock-file
-darwin-rebuild build --flake .#AssemblingOS-MacBook-Pro
+darwin-rebuild build --flake .#AssemblingOS
 ```
 
 Apply only when ready:
 
 ```bash
-darwin-rebuild switch --flake .#AssemblingOS-MacBook-Pro
+darwin-rebuild switch --flake .#AssemblingOS
 ```
 
 Day to day, prefer the update command (build-before-switch, then releases the
@@ -114,7 +114,7 @@ original host profile.
 ```text
 Darwin:
   DRs-MacBook-Pro
-  AssemblingOS-MacBook-Pro
+  AssemblingOS
 
 NixOS:
   assemblingos-vm

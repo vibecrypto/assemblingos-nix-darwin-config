@@ -168,7 +168,7 @@ Prepared defaults:
 ```text
 username: drg
 architecture: aarch64-darwin
-host profile: AssemblingOS-MacBook-Pro
+host profile: AssemblingOS
 minimum macOS: 14
 ```
 
@@ -182,7 +182,7 @@ Do not switch until these values are compatible with `flake.nix`.
 4. Clone `nix-darwin-config`.
 5. Give the new agent the New Mac Installation prompt from
    `docs/agent-handoff-prompts.md`.
-6. Build `AssemblingOS-MacBook-Pro`.
+6. Build `AssemblingOS`.
 7. Review the build and ask separately before the first switch.
 8. Run `scripts/doctor.sh`.
 9. Clone `assemblingos-agent-skills`.

@@ -22,7 +22,7 @@ Use GitHub as the portable source of truth:
 Confirm these values on the new laptop:
 
 - macOS username: currently `drg`
-- prepared host profile name: `AssemblingOS-MacBook-Pro`
+- prepared host profile name: `AssemblingOS`
 - platform: Apple Silicon uses `aarch64-darwin`
 - Nix installer: Determinate Systems is expected
 - GitHub access: SSH key or HTTPS token configured enough to clone private repos
@@ -36,7 +36,7 @@ system.primaryUser = "drg";
 If the host profile name should change, update the output name in `flake.nix` and use the same name in rebuild commands:
 
 ```bash
-darwin-rebuild build --flake .#AssemblingOS-MacBook-Pro
+darwin-rebuild build --flake .#AssemblingOS
 ```
 
 ## Bootstrap Steps
@@ -74,14 +74,14 @@ nix flake show --no-write-lock-file
 8. Build without changing the active system:
 
 ```bash
-bash scripts/bootstrap-darwin.sh AssemblingOS-MacBook-Pro
+bash scripts/bootstrap-darwin.sh AssemblingOS
 ```
 
 9. Switch only after the build passes and the username/profile values are correct:
 
 ```bash
 sudo nix run nix-darwin/master#darwin-rebuild -- switch \
-  --flake .#AssemblingOS-MacBook-Pro
+  --flake .#AssemblingOS
 ```
 
 ## Install AssemblingOS Skills

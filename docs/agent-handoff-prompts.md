@@ -43,7 +43,7 @@ Expected local path:
 ~/nix-darwin-config
 
 Target prepared host:
-AssemblingOS-MacBook-Pro
+AssemblingOS
 
 Main rules:
 - The repository is the source of truth.

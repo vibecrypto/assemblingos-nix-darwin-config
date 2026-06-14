@@ -14,7 +14,7 @@ docs/pre-move-checklist.md
 The prepared second-Mac profile is:
 
 ```text
-AssemblingOS-MacBook-Pro
+AssemblingOS
 ```
 
 It currently assumes:
@@ -118,7 +118,7 @@ Mac.
 whoami
 uname -m
 scutil --get LocalHostName
-rg -n 'AssemblingOS-MacBook-Pro|primaryUser|aarch64-darwin' flake.nix
+rg -n 'AssemblingOS|primaryUser|aarch64-darwin' flake.nix
 ```
 
 Do not switch if the username or architecture is wrong.
@@ -128,7 +128,7 @@ Do not switch if the username or architecture is wrong.
 The helper validates and builds but does not apply:
 
 ```bash
-bash scripts/bootstrap-darwin.sh AssemblingOS-MacBook-Pro
+bash scripts/bootstrap-darwin.sh AssemblingOS
 ```
 
 It stops before building if the username, architecture, or minimum macOS
@@ -140,7 +140,7 @@ Only after the build succeeds:
 
 ```bash
 sudo nix run nix-darwin/master#darwin-rebuild -- switch \
-  --flake .#AssemblingOS-MacBook-Pro
+  --flake .#AssemblingOS
 ```
 
 This first-switch bootstrap follows the current nix-darwin installation
@@ -150,7 +150,7 @@ workflow. The system configuration itself remains pinned by this repository's
 After nix-darwin is installed, future changes use:
 
 ```bash
-sudo darwin-rebuild switch --flake .#AssemblingOS-MacBook-Pro
+sudo darwin-rebuild switch --flake .#AssemblingOS
 ```
 
 ## 8. Verify
