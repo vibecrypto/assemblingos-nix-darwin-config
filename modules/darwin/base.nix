@@ -30,11 +30,12 @@
 
   programs.zsh.enable = true;
 
-  # Minimal, on-brand prompt for every terminal: just "user@host " — no path,
-  # no "> ". Overrides nix-darwin's default `prompt suse` theme. Scoped to this
-  # host so other machines in the fleet keep their own prompt.
+  # On-brand prompt for every terminal, scoped to this host (overrides
+  # nix-darwin's default `prompt suse`): user@host with the host in teal, the
+  # current dir dimmed grey, and a green caret —
+  # e.g. "thecaio@AssemblingOS ~/Claude ❯ ".
   programs.zsh.promptInit = lib.mkIf (hostName == "AssemblingOS") ''
-    PROMPT='%n@%m '
+    PROMPT='%n@%F{37}%m%f %F{244}%~%f %F{green}❯%f '
   '';
 
   # Primary macOS user supplied by the host definition in flake.nix.
