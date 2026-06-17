@@ -11,7 +11,7 @@
       "tradingview"
       "cmux"
       "codex-app"
-      "handbrake"
+      "handbrake-app"
       "protonvpn"
     ];
 
