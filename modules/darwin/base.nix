@@ -28,6 +28,18 @@
   networking.computerName = hostName;
   networking.localHostName = hostName;
 
+  # macOS Application Firewall, declared so it survives every rebuild.
+  #   enable            - block unsolicited inbound connections.
+  #   allowSigned/App   - still let Apple + notarised apps receive connections,
+  #                       so normal software keeps working without prompts.
+  #   enableStealthMode - don't answer ping / port probes (quieter on the LAN).
+  networking.applicationFirewall = {
+    enable = true;
+    allowSigned = true;
+    allowSignedApp = true;
+    enableStealthMode = true;
+  };
+
   programs.zsh.enable = true;
 
   # On-brand prompt for every terminal, scoped to this host (overrides
