@@ -84,7 +84,10 @@ let
         if command -v brew >/dev/null 2>&1; then
           echo "==> Upgrading Homebrew formulae + casks"
           brew update || true
-          brew upgrade || true
+          # --greedy-auto-updates also upgrades casks marked `auto_updates`
+          # (e.g. cmux) which a plain `brew upgrade` would otherwise skip,
+          # keeping self-updating apps on the deliberate "update" too.
+          brew upgrade --greedy-auto-updates || true
           brew cleanup || true
         fi
         if command -v mas >/dev/null 2>&1; then
