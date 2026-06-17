@@ -11,6 +11,7 @@
       "tradingview"
       "cmux"
       "codex-app"
+      "handbrake"
     ];
 
     masApps = {
