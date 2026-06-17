@@ -12,6 +12,7 @@
       "cmux"
       "codex-app"
       "handbrake"
+      "protonvpn"
     ];
 
     masApps = {
