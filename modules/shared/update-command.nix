@@ -72,6 +72,27 @@ let
         git push || echo "!! Push failed (no rights or remote ahead); commit kept locally" >&2
       fi
 
+      # Homebrew casks + Mac App Store apps aren't pinned by flake.lock (the
+      # non-reproducible escape hatch), so the switch's `brew bundle` installs
+      # them but never upgrades them. Refresh them here so one "update" keeps the
+      # whole machine current — and so you never need an app's own updater.
+      # Local-only, after the fleet release; failures here don't fail the update.
+      if [ "$(uname -s)" = "Darwin" ]; then
+        for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+          if [ -x "$b" ]; then eval "$("$b" shellenv)"; break; fi
+        done
+        if command -v brew >/dev/null 2>&1; then
+          echo "==> Upgrading Homebrew formulae + casks"
+          brew update || true
+          brew upgrade || true
+          brew cleanup || true
+        fi
+        if command -v mas >/dev/null 2>&1; then
+          echo "==> Upgrading Mac App Store apps"
+          mas upgrade || true
+        fi
+      fi
+
       echo "==> Done. Enjoy your coffee."
     '';
   };
