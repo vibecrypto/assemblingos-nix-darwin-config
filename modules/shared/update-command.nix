@@ -41,9 +41,27 @@ let
         echo "   Revert the update with: git -C $repo checkout flake.lock" >&2
         exit 1
       fi
+      built="$(readlink ./result)"
 
       echo "==> Build OK. Switching the live system (needs sudo)"
-      sudo "$rebuild" switch --flake ".#$host"
+      # Don't trust the switch exit code: nix-darwin's app-management activation
+      # step can exit non-zero (e.g. `tccutil reset SystemPolicyAppBundles` on
+      # TCC-protected notarised apps in /Applications/Nix Apps) even when the
+      # rest ran. Confirm success by checking the live system actually became
+      # the closure we just built, instead of releasing a lock for a switch
+      # that never applied.
+      sudo "$rebuild" switch --flake ".#$host" || true
+
+      if [ "$(readlink /run/current-system 2>/dev/null)" != "$built" ]; then
+        echo "!! Switch did NOT fully apply: /run/current-system is not the built closure." >&2
+        echo "   On macOS this is almost always the App Management permission — the" >&2
+        echo "   activation could not modify notarised apps in /Applications/Nix Apps." >&2
+        echo "   Grant Full Disk Access (or App Management) to the app running" >&2
+        echo "   darwin-rebuild, then re-run. The flake.lock update was NOT released." >&2
+        echo "   Revert it with: git -C $repo checkout flake.lock" >&2
+        exit 1
+      fi
+      echo "==> Switch confirmed live."
 
       if git diff --quiet -- flake.lock; then
         echo "==> Already current; nothing new to release"
