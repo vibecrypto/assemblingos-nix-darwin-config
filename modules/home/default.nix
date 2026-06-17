@@ -34,10 +34,6 @@
       lua-language-server
       ty
       ruff
-    ]
-    # macOS-only GUI tools (no Linux build); guarded so the NixOS side still evals.
-    ++ lib.optionals stdenv.isDarwin [
-      raycast
     ];
   };
 
